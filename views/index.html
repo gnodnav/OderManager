@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Store management</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="/bower/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/stylesheets/style.css">
+  <link rel="stylesheet" href="/bower/angular-material/angular-material.min.css">
+  <link rel="stylesheet" href="/bower/jquery-ui-custom/jquery-ui.min.css">
+  <link rel="stylesheet" href="/bower/jtable/lib/themes/metro/blue/jtable.min.css"  type="text/css" />
+
+  <script src="/bower/jquery/dist/jquery.min.js"></script>
+  <script src="/bower/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/bower/jquery-ui-custom/jquery-ui.min.js"></script>
+
+ 
+  <script src="/bower/angular/angular.min.js"></script>
+  <script src="/bower/angular-route/angular-route.min.js"></script>
+  <script src="/bower/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+  <script src="/bower/angular-animate/angular-animate.min.js"></script>
+  <script src="/bower/angular-aria/angular-aria.min.js"></script>
+  <script src="/bower/angular-messages/angular-messages.min.js"></script>
+  <script src="/bower/angular-material/angular-material.min.js"></script>
+  <script src="/bower/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="/bower/ngstorage/ngStorage.min.js"></script>
+  <!-- jtable -->
+  <script src="/bower/jtable/lib/external/json2.min.js"></script>
+  <script src="/bower/jtable/lib/jquery.jtable.min.js"></script>
+  <script src="/bower/jtable/lib/extensions/jquery.jtable.record-actions.js"></script>
+  <!-- angluarjs -->
+  <script src="/assets/javascripts/main/routing.js"></script>
+  <script src="/assets/javascripts/main/login.js"></script>
+  <script src="/assets/javascripts/main/popup.js"></script>
+  <script src="/assets/javascripts/services/restful.js"></script>
+  <script src="/assets/javascripts/main/jtable.js"></script>
+</head>
+
+<body ng-app="app" ng-controller="loginCtrl">
+  <span class="logo"><img src="/assets/images/fpt.png" alt="">
+      <img src="/assets/images/logo-1.png" alt="">
+      </span>
+  <div class="menu">
+    <nav class="navbar navbar-default">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="#!/"><i class="glyphicon glyphicon-home"></i></a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+          <div class="dropdown" ng-if="isAuthenticated()">
+            <a href class="btn  btn-lg" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user"></span> <span ng-bind="username"></span>
+                  <span class="caret"></span>
+                </a>
+            <ul class="dropdown-menu">
+              <li><a href="#!/dashboard/user-info">Profile <span class="glyphicon glyphicon-cog pull-right"></span></a></li>
+              <li><a href="#!/dashboard/change-password">Change<span class="glyphicon glyphicon-edit pull-right"></span></a></li>
+              <li><a href ng-click="logout()">Sign Out<span class="	glyphicon glyphicon-log-out pull-right"></span></a></li>
+            </ul>
+          </div>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li><a href="#!/dashboard/order">Order</a></li>
+          <li><a href="#!/dashboard/order-list">History</a></li>
+        </ul>
+      </div>
+      <!-- /.navbar-collapse -->
+      <!-- /.container -->
+    </nav>
+  </div>
+  <div class="container-fluid">
+    <ui-view></ui-view>
+  </div>
+  <footer>
+    <div class="footer">Copy rights ® 2017 FIS Services HCM. All rights reserved!</div>
+  </footer>
+</body>
+
+</html>

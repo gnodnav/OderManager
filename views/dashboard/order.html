@@ -1,0 +1,174 @@
+<script type="text/javascript">
+	$(document).ready(function () {
+		$('#tableOrder').jtable({
+			title: 'Products',
+			paging: true, //Enables paging
+			pageSize: 5, //Actually this is not needed since default value is 10.
+			sorting: true, //Enables sorting
+			defaultSorting: 'Name ASC', //Optional. Default sorting on first load.
+			actions: {
+				listAction: '/api/product-list',
+				createAction: '/api/create-product',
+				updateAction: '/api/update-product',
+				deleteAction: '/api/delete-product'
+			},
+			fields: {
+				ID: {
+					title: 'ID',
+					key: true,
+					width: '5%'
+				},
+				Name: {
+					title: 'Tên hàng',
+					width: '20%',
+					create: true,
+					edit: true
+				},
+				Total: {
+					title: 'Số lượng',
+					width: '10%',
+					create: true,
+					edit: true
+				},
+				unitPrice: {
+					title: 'Đơn giá',
+					width: '10%',
+					create: true,
+					edit: true
+				},
+				Price: {
+					title: 'Thành tiền',
+					width: '15%',
+					create: false,
+					edit: false
+				},
+				NCC: {
+					title: 'Nhà cung cấp đề nghị',
+					width: '20%',
+					create: true,
+					edit: true
+				},
+				Note: {
+					title: 'Y/C khác',
+					width: '20%',
+					type: 'textarea',
+					create: true,
+					edit: true
+				}
+
+			}
+		});
+		$('#tableOrder').jtable('load');
+	});
+
+</script>
+<div class="panel-body">
+	<div class="well well-sm">
+		<form>
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="name">Po Number</label>
+						<input type="text" class="form-control" id="poNumber" required="required" disabled/>
+					</div>
+					<div class="form-group">
+						<label for="type">
+																		Type</label>
+						<select id="type" name="type" class="form-control" required="required">
+																		<option value="na" selected="">Choose One:</option>
+																		<option value="service">Đơn hàng khẩn</option>
+																		<option value="suggestions">Đơn hàng gấp</option>
+																		<option value="product">Đơn hàng nhanh</option>
+																		<option value="product">Đơn hàng bình thường</option>
+																		<option value="product">Đơn hàng XNK</option>
+																	</select>
+					</div>
+					<div class="form-group">
+						<label for="warehouse">Warehouse</label>
+						<select id="subject" name="subject" class="form-control" required="required">
+																		<option value="na" selected="">Choose One:</option>
+																		<option value="service">K-99</option>
+																		<option value="suggestions">80-82</option>
+																		<option value="product">KGB</option>
+																	</select>
+					</div>
+
+				</div>
+				<div class="col-md-6">
+					<div class="form-group">
+						<label for="name">Customer Info</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-user"></span>
+							</span>
+							<input type="text" class="form-control" id="email" placeholder="Enter Customer Infomate" required="required" /></div>
+					</div>
+
+					<div class="form-group">
+						<label for="name">Address</label>
+						<div class="input-group">
+							<span class="input-group-addon"><span class="glyphicon glyphicon-home"></span>
+							</span>
+							<input type="text" class="form-control" id="email" placeholder="Enter address" required="required" /></div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div id="tableOrder"></div>
+					<jtable></jtable>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 toppad">
+					<div class="form-group">
+						<label for="file">Attach													
+												</label>
+						<div class="input-group image-preview">
+							<input type="text" class="form-control image-preview-filename" ng-model="fileName">
+							<!-- don't give a name === doesn't send on POST/GET -->
+							<span class="input-group-btn">
+										<!-- image-preview-input -->
+										<div class="btn btn-default image-preview-input">
+											<span class="glyphicon glyphicon-folder-open"></span>
+							<span class="image-preview-input-title">Choose File</span>
+							<input type="file" onchange="angular.element(this).scope().setFile(this)" ngf-select accept="image/png, image/jpeg, image/gif"
+							 ng-model="fileUpload" required="required" />
+							<!-- rename it -->
+						</div>
+						</span>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6" style="margin-top: 40px;">
+				<div class="buying-selling-group col-md-offset-3" id="buying-selling-group" data-toggle="buttons">
+					<label class="btn btn-default buying-selling">
+						<input type="radio" name="options" id="option1" autocomplete="off">
+						<span class="radio-dot"></span>
+						<span class="buying-selling-word">Service</span>
+					</label>
+
+					<label class="btn btn-default buying-selling">
+						<input type="radio" name="options" id="option2" autocomplete="off">
+						<span class="radio-dot"></span>
+						<span class="buying-selling-word">HW + SW</span>
+					</label>
+				</div>
+			</div>
+
+	</div>
+	<div class="row">
+		<div class="col-md-11 toppad">
+			<button class="btn btn-warning pull-right" id="btnContactUs">Resfesh</button>
+		</div>
+		<div class="col-md-1 toppad">
+
+			<button type="submit" class="btn btn-primary pull-right " id="btnContactUs">
+					Complete
+				</button>
+		</div>
+
+	</div>
+</div>
+</form>
+</div>
+</div>
